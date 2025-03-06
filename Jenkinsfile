@@ -12,7 +12,7 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                git 'https://github.com/meghanavalluri02/ProjectR.git'
+                git branch: 'main', url: 'https://github.com/meghanavalluri02/ProjectR.git'
             }
         }
         stage('Docker Login') {
