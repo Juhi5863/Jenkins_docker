@@ -3,7 +3,7 @@ pipeline {
     environment {
         DOCKER_IMAGE = "my-jenkins-app"
         DOCKER_TAG = "latest"
-        DOCKER_REPO = "meghanavalluri02/my-jenkins-app"
+        DOCKER_REPO = "meghanavalluri/my-jenkins-app"
         DOCKER_CREDENTIALS_ID = "ee45408a-042f-4f81-a7de-1f0eb00ca8f0" // Jenkins credentials ID
         CONTAINER_NAME = "mycontainer7"
         CONTAINER_NAME1 = "mycontainer8"
