@@ -6,9 +6,9 @@ pipeline {
 
 
         DOCKER_REPO = "juhichoudhary/my-jenkins-app1"
-        DOCKER_CREDENTIALS_ID = "cb61a26e-ed0a-4ae5-99e8-1fff136f6bd8" // Jenkins credentials ID
-        CONTAINER_NAME = "mycontainer32"
-        CONTAINER_NAME1 = "mycontainer33"
+        DOCKER_CREDENTIALS_ID = "juhii" // Jenkins credentials ID
+        CONTAINER_NAME = "mycontainer34"
+        CONTAINER_NAME1 = "mycontainer35"
 
     }
     stages {
@@ -18,14 +18,13 @@ pipeline {
             }
         }
          stage('Docker Login') {
-            steps {
-                script {
-                    docker.withRegistry('https://index.docker.io/v1/', DOCKER_CREDENTIALS_ID) {
-                        echo "Logged into Docker Hub"
-                    }
-                }
-            }
+    steps {
+        withDockerRegistry([credentialsId: 'juhii', url: 'https://index.docker.io/v1/']) {
+            echo "Logged into Docker Hub"
         }
+    }
+}
+
         stage('Build Docker Image') {
             steps {
                 script {
@@ -42,7 +41,7 @@ pipeline {
                         docker ps -a -q --filter name=${CONTAINER_NAME} | xargs -r docker rm || true
 
                         # Run new container
-                        docker run -d -p 8099:80 --name ${CONTAINER_NAME} ${DOCKER_IMAGE}:${DOCKER_TAG}
+                        docker run -d -p 8034:80 --name ${CONTAINER_NAME} ${DOCKER_IMAGE}:${DOCKER_TAG}
                     """
                 }
             }
