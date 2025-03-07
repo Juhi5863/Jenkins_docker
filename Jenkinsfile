@@ -1,21 +1,23 @@
 pipeline {
     agent any
     environment {
-        DOCKER_IMAGE = "my-jenkins-app"
+        DOCKER_IMAGE = "my-jenkins-app1"
         DOCKER_TAG = "latest"
-        DOCKER_REPO = "meghanavalluri/my-jenkins-app"
-        DOCKER_CREDENTIALS_ID = "ee45408a-042f-4f81-a7de-1f0eb00ca8f0" // Jenkins credentials ID
-        CONTAINER_NAME = "mycontainer1"
-        CONTAINER_NAME1 = "mycontainer2"
+
+
+        DOCKER_REPO = "juhichoudhary/my-jenkins-app1"
+        DOCKER_CREDENTIALS_ID = "cb61a26e-ed0a-4ae5-99e8-1fff136f6bd8" // Jenkins credentials ID
+        CONTAINER_NAME = "mycontainer32"
+        CONTAINER_NAME1 = "mycontainer33"
 
     }
     stages {
         stage('Clone Repository') {
             steps {
-                git branch: 'main', url: 'https://github.com/meghanavalluri02/ProjectR.git'
+                git branch: 'main', url: 'https://github.com/Juhi5863/Jenkins_docker.git'
             }
         }
-        stage('Docker Login') {
+         stage('Docker Login') {
             steps {
                 script {
                     docker.withRegistry('https://index.docker.io/v1/', DOCKER_CREDENTIALS_ID) {
@@ -40,7 +42,7 @@ pipeline {
                         docker ps -a -q --filter name=${CONTAINER_NAME} | xargs -r docker rm || true
 
                         # Run new container
-                        docker run -d -p 8092:80 --name ${CONTAINER_NAME} ${DOCKER_IMAGE}:${DOCKER_TAG}
+                        docker run -d -p 8099:80 --name ${CONTAINER_NAME} ${DOCKER_IMAGE}:${DOCKER_TAG}
                     """
                 }
             }
